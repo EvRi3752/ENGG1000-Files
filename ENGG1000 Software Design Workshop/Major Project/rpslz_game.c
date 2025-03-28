@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> 
+#include <assert.h>
 
 const char *gesture_names[] = {"Rock", "Paper", "Scissors", "Lizard", "Spock"}; 
 
@@ -23,6 +24,39 @@ int determine_winner(int player1, int player2){
     else {
         return -1; // Player 2 wins
     }
+}
+
+void unit_tests(){
+    printf("Running unit tests...\n");
+    
+    // Test all winning conditions
+    printf("Testing winning conditions...\n");
+    assert(determine_winner(0, 2) == 1);   // Rock beats Scissors
+    assert(determine_winner(1, 0) == 1);   // Paper beats Rock
+    assert(determine_winner(2, 1) == 1);   // Scissors beats Paper
+    assert(determine_winner(0, 3) == 1);   // Rock beats Lizard
+    assert(determine_winner(3, 4) == 1);   // Lizard beats Spock
+    assert(determine_winner(4, 2) == 1);   // Spock beats Scissors
+    assert(determine_winner(2, 3) == 1);   // Scissors beats Lizard
+    assert(determine_winner(3, 1) == 1);   // Lizard beats Paper
+    assert(determine_winner(1, 4) == 1);   // Paper beats Spock
+    assert(determine_winner(4, 0) == 1);   // Spock beats Rock
+    
+    // Test all ties
+    printf("Testing tie conditions...\n");
+    for (int i = 0; i < 5; i++) {
+        assert(determine_winner(i, i) == 0);
+    }
+    
+    // Test some losing conditions
+    printf("Testing losing conditions...\n");
+    assert(determine_winner(2, 0) == -1);  // Scissors loses to Rock
+    assert(determine_winner(0, 1) == -1);  // Rock loses to Paper
+    assert(determine_winner(1, 2) == -1);  // Paper loses to Scissors
+    assert(determine_winner(3, 0) == -1);  // Lizard loses to Rock
+    assert(determine_winner(4, 3) == -1);  // Spock loses to Lizard
+    
+    printf("All unit tests passed!\n");
 }
 
 void human_computer(){
@@ -235,6 +269,9 @@ int main(){
     }
     else if (selec == 3){ 
         human_human();
+    }
+    else if (selec ==4){
+        unit_tests();
     }
     else {
         printf("Invalid selection. Exiting.\n");
