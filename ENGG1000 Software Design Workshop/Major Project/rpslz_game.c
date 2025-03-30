@@ -3,7 +3,7 @@
 #include <time.h> 
 #include <assert.h>
 
-const char *gesture_names[] = {"Rock", "Paper", "Scissors", "Lizard", "Spock"}; 
+const char *gesture_names[] = {"Rock", "Paper", "Scissors", "Lizard", "Spock", "Air", "Water", "Sponge", "Fire"}; // Rock=0, Paper=1, Scissors=2, Lizard=3, Spock=4, Air=5, Water=6, Sponge=7, Fire=8
 
 int determine_winner(int player1, int player2){ 
     if (player1 == player2) {
@@ -18,7 +18,41 @@ int determine_winner(int player1, int player2){
              (player1 == 2 && player2 == 3) || // Scissors beats Lizard
              (player1 == 3 && player2 == 1) || // Lizard beats paper
              (player1 == 1 && player2 == 4) || // Paper beats Spock
-             (player1 == 4 && player2 == 0)) { // Spock beats rock
+             (player1 == 4 && player2 == 0) || // Spock beats Rock
+             (player1 == 0 && player2 == 8) || // Rock beats fire
+              (player1 == 0 && player2 == 7) || // Rock beats sponge 
+              (player1 == 8 && player2 == 2) || // Fire beats scissors
+              (player1 == 8 && player2 == 1) || // Fire beats paper
+              (player1 == 8 && player2 == 7) || // Fire beats sponge
+              (player1 == 2 && player2 == 5) || // Scissors beats Air
+              (player1 == 2 && player2 == 7) || // Scissors beats Sponge
+              (player1 == 7 && player2 == 1) || // Sponge beats paper
+              (player1 == 7 && player2 == 5) || // Sponge beats air
+              (player1 == 7 && player2 == 6) || // Sponge beats water 
+              (player1 == 1 && player2 == 5) || // Paper beats air
+               (player1 == 1 && player2 == 6) || // Paper beats water
+               (player1 == 5 && player2 == 8) || // Air beats fire
+               (player1 == 5 && player2 == 0) || // Air beats rock
+               (player1 == 5 && player2 == 6) || // Air beats water
+               (player1 == 6 && player2 == 0) || // Water beats rock
+               (player1 == 6 && player2 == 8) || // Water beats fire 
+               (player1 == 6 && player2 == 2) || // Water beats scissors
+               (player1 == 3 && player2 == 5) ||  // Lizard beats Air
+             (player1 == 3 && player2 == 6) ||  // Lizard beats Water
+             (player1 == 3 && player2 == 7) ||  // Lizard beats Sponge
+             (player1 == 3 && player2 == 8) ||  // Lizard beats Fire
+             (player1 == 4 && player2 == 5) ||  // Spock beats Air
+             (player1 == 4 && player2 == 6) ||  // Spock beats Water
+             (player1 == 4 && player2 == 7) ||  // Spock beats Sponge
+             (player1 == 4 && player2 == 8) || // Spock beats Fire
+             (player1 == 5 && player2 == 3) ||  // Air beats Lizard
+             (player1 == 5 && player2 == 4) ||  // Air beats Spock
+             (player1 == 6 && player2 == 3) ||  // Water beats Lizard
+             (player1 == 6 && player2 == 4) ||  // Water beats Spock
+             (player1 == 7 && player2 == 3) ||  // Sponge beats Lizard
+             (player1 == 7 && player2 == 4) ||  // Sponge beats Spock
+             (player1 == 8 && player2 == 3) ||  // Fire beats Lizard
+             (player1 == 8 && player2 == 4)) {  // Fire beats Spock) 
         return 1; // Player 1 wins
     } 
     else {
@@ -29,7 +63,7 @@ int determine_winner(int player1, int player2){
 void unit_tests(){
     printf("Running unit tests...\n");
     
-    // Test all winning conditions
+    // Test all winning conditions 
     printf("Testing winning conditions...\n");
     assert(determine_winner(0, 2) == 1);   // Rock beats Scissors
     assert(determine_winner(1, 0) == 1);   // Paper beats Rock
@@ -41,21 +75,73 @@ void unit_tests(){
     assert(determine_winner(3, 1) == 1);   // Lizard beats Paper
     assert(determine_winner(1, 4) == 1);   // Paper beats Spock
     assert(determine_winner(4, 0) == 1);   // Spock beats Rock
-    
+    assert(determine_winner(0, 8) == 1);   // Rock beats Fire
+    assert(determine_winner(0, 7) == 1);   // Rock beats Sponge
+    assert(determine_winner(8, 2) == 1);   // Fire beats Scissors
+    assert(determine_winner(8, 1) == 1);   // Fire beats Paper
+    assert(determine_winner(8, 7) == 1);   // Fire beats Sponge
+    assert(determine_winner(2, 5) == 1);   // Scissors beats Air
+    assert(determine_winner(2, 7) == 1);   // Scissors beats Sponge
+    assert(determine_winner(7, 1) == 1);   // Sponge beats Paper
+    assert(determine_winner(7, 5) == 1);   // Sponge beats Air
+    assert(determine_winner(7, 6) == 1);   // Sponge beats Water
+    assert(determine_winner(1, 5) == 1);   // Paper beats Air
+    assert(determine_winner(1, 6) == 1);   // Paper beats Water
+    assert(determine_winner(5, 8) == 1);   // Air beats Fire
+    assert(determine_winner(5, 0) == 1);   // Air beats Rock
+    assert(determine_winner(5, 6) == 1);   // Air beats Water
+    assert(determine_winner(6, 0) == 1);   // Water beats Rock
+    assert(determine_winner(6, 8) == 1);   // Water beats Fire
+    assert(determine_winner(6, 2) == 1);   // Water beats Scissors
+    assert(determine_winner(3, 5) == 1);   // Lizard beats Air
+    assert(determine_winner(3, 6) == 1);   // Lizard beats Water
+    assert(determine_winner(3, 7) == 1);   // Lizard beats Sponge
+    assert(determine_winner(3, 8) == 1);   // Lizard beats Fire
+    assert(determine_winner(4, 5) == 1);   // Spock beats Air
+    assert(determine_winner(4, 6) == 1);   // Spock beats Water
+    assert(determine_winner(4, 7) == 1);   // Spock beats Sponge
+    assert(determine_winner(4, 8) == 1);   // Spock beats Fire
+    assert(determine_winner(5, 3) == 1);   // Air beats Lizard
+    assert(determine_winner(5, 4) == 1);   // Air beats Spock
+    assert(determine_winner(6, 3) == 1);   // Water beats Lizard
+    assert(determine_winner(6, 4) == 1);   // Water beats Spock
+    assert(determine_winner(7, 3) == 1);   // Sponge beats Lizard
+    assert(determine_winner(7, 4) == 1);   // Sponge beats Spock
+    assert(determine_winner(8, 3) == 1);   // Fire beats Lizard
+    assert(determine_winner(8, 4) == 1);   // Fire beats Spock
+
     // Test all ties
     printf("Testing tie conditions...\n");
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 9; i++) {
         assert(determine_winner(i, i) == 0);
     }
     
-    // Test some losing conditions
+    // Test losing conditions (reverse of winning conditions)
     printf("Testing losing conditions...\n");
     assert(determine_winner(2, 0) == -1);  // Scissors loses to Rock
     assert(determine_winner(0, 1) == -1);  // Rock loses to Paper
     assert(determine_winner(1, 2) == -1);  // Paper loses to Scissors
     assert(determine_winner(3, 0) == -1);  // Lizard loses to Rock
     assert(determine_winner(4, 3) == -1);  // Spock loses to Lizard
-    
+    assert(determine_winner(8, 0) == -1);  // Fire loses to Rock
+    assert(determine_winner(7, 0) == -1);  // Sponge loses to Rock
+    assert(determine_winner(2, 8) == -1);  // Scissors loses to Fire
+    assert(determine_winner(1, 8) == -1);  // Paper loses to Fire
+    assert(determine_winner(7, 8) == -1);  // Sponge loses to Fire
+    assert(determine_winner(5, 2) == -1);  // Air loses to Scissors
+    assert(determine_winner(7, 2) == -1);  // Sponge loses to Scissors
+    assert(determine_winner(1, 7) == -1);  // Paper loses to Sponge
+    assert(determine_winner(5, 7) == -1);  // Air loses to Sponge
+    assert(determine_winner(6, 7) == -1);  // Water loses to Sponge
+    assert(determine_winner(5, 1) == -1);  // Air loses to Paper
+    assert(determine_winner(6, 1) == -1);  // Water loses to Paper
+    assert(determine_winner(8, 5) == -1);  // Fire loses to Air
+    assert(determine_winner(0, 5) == -1);  // Rock loses to Air
+    assert(determine_winner(6, 5) == -1);  // Water loses to Air
+    assert(determine_winner(0, 6) == -1);  // Rock loses to Water
+    assert(determine_winner(8, 6) == -1);  // Fire loses to Water
+    assert(determine_winner(2, 6) == -1);  // Scissors loses to Water
+
     printf("All unit tests passed!\n");
 }
 
