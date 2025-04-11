@@ -35,7 +35,7 @@ void initializeDeck(Card deck[]) {
     }
 }
 
-// Function to shuffle the deck using the Fisher-Yates algorithm
+// Function to shuffle the deck
 void shuffleDeck(Card deck[], int size) {
     srand(time(NULL));
     for (int i = size - 1; i > 0; i--) {

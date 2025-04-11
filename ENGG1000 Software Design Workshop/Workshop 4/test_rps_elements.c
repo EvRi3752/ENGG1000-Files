@@ -10,11 +10,11 @@ const char *gesture_names[] = {"Rock", "Paper", "Scissors"};
 int determine_winner(int gesture_1, int gesture_2) {
     if (gesture_1 == 0) {               // gesture_1 is rock
         if (gesture_2 == 1) {           // gesture_2 is paper - 2 wins
-            return 1;
+            return -1;
         } else if (gesture_2 == 0) {    // gesture_2 is rock - tie
             return 0;
         } else {                        // gesture_2 is scissors - 2 loses
-            return -1; 
+            return 1; 
         }
     } else if (gesture_1 == 1) {        // gesture_1 is paper
         if (gesture_2 == 2) {           // gesture_2 is scissors - 2 wins
@@ -225,7 +225,10 @@ void human_human() {
 
 int main() {
     srand(time(NULL));
-
+    int selec;
+    printf("Select Mode of Play\nPvC=1\nCvC=2\nPvP=3\n: ");
+    scanf("%d", &selec); 
+    if (selec == 0){ 
     printf("Testing when gesture 2 is rock\n");
     test_determine_winner(0);
     
@@ -243,15 +246,22 @@ int main() {
 
     printf("Testing validity of gesture scissors\n");
     test_check_gesture3(2);
-    
+    }
+    else if (selec == 1){
     printf("Playing player vs cpu\n"); 
     human_computer1();
-
+    }
+    else if (selec == 2){
     printf("Playing cpu vs cpu\n"); 
     computer_computer();
-
+    }
+    else if (selec == 3){
     printf("Playing player vs player\n"); 
     human_human();
+    }
+    else{
+        printf("Invalid selection. Exiting.\n");
+    }
 
     return 0;
 }

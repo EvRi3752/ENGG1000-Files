@@ -164,13 +164,13 @@ void human_computer(){
             printf("\n--- Round %d of %d ---\n", round, max_rounds);
             printf("Score: You %d - %d Computer\n", player_score, computer_score);
             
-            computer = rand() % 5; 
+            computer = rand() % 9; 
             printf("Please enter your gesture\n"); 
-            printf("Enter 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock: "); 
+            printf("Enter 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock, 5 for Air, 6 for Water, 7 for Sponge, 8 for Fire: "); 
             scanf("%d", &human); 
 
-            if (human < 0 || human > 4) { 
-                printf("Invalid Input! Please enter either 0, 1, 2, 3, or 4.\n"); 
+            if (human < 0 || human > 8) { 
+                printf("Invalid Input! Please enter either 0, 1, 2, 3, 4, 5, 6, 7, or 8.\n"); 
                 round--; // Don't count this invalid attempt as a round
                 continue; 
             }
@@ -229,8 +229,8 @@ void computer_computer(){
             printf("\n--- Round %d of %d ---\n", round, max_rounds);
             printf("Score: Computer1 %d - %d Computer2\n", comp1_score, comp2_score);
             
-            computer1 = rand() % 5;
-            computer2 = rand() % 5;
+            computer1 = rand() % 9;
+            computer2 = rand() % 9;
 
             winner = determine_winner(computer1, computer2); 
             printf("Computer1 chose %s and Computer2 chose %s.\n", 
@@ -288,11 +288,11 @@ void human_human(){
             printf("Score: Player1 %d - %d Player2\n", player1_score, player2_score);
             
             printf("Player 1, enter your gesture\n"); 
-            printf("Enter 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock: "); 
+            printf("Enter 0 for Rock, 1 for Paper, 2 for Scissors, 3 for Lizard, 4 for Spock, 5 for Air, 6 for Water, 7 for Sponge, 8 for Fire: "); 
             scanf("%d", &human1); 
 
-            if (human1 < 0 || human1 > 4) { 
-                printf("Invalid Input! Please enter either 0, 1, 2, 3, or 4.\n"); 
+            if (human1 < 0 || human1 > 8) { 
+                printf("Invalid Input! Please enter either 0, 1, 2, 3, 4, 5, 6, 7, or 8.\n"); 
                 round--; // Don't count this invalid attempt as a round
                 continue; 
             }
